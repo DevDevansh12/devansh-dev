@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import Hero from "@/components/sections/Hero";
 
 export const metadata: Metadata = {
   title: "Devansh Variya | Full Stack Developer & Software Engineer",
@@ -72,11 +70,11 @@ const jsonLd = {
   ],
 };
 
-// Below-fold sections: loaded dynamically for optimal performance
-const Experience = dynamic(() => import("@/components/sections/Experience"));
-const Skills     = dynamic(() => import("@/components/sections/Skills"));
-const Projects   = dynamic(() => import("@/components/sections/Projects"));
-const Contact    = dynamic(() => import("@/components/sections/Contact"));
+import Hero from "@/components/sections/Hero";
+import Experience from "@/components/sections/Experience";
+import Skills from "@/components/sections/Skills";
+import Projects from "@/components/sections/Projects";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (

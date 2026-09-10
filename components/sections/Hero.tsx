@@ -55,7 +55,9 @@ export default function Hero() {
 
             {/* Main Name & Title */}
             <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
-              Hi, I&apos;m Devansh Variya.
+              Hi, I&apos;m{" "}
+              <span className="text-[#00bc87] dark:text-[#2dd4bf]">Devansh</span>{" "}
+              <span className="text-[#00babc] dark:text-[#22d3ee]">Variya.</span>
             </h1>
 
             {/* Role cycler */}

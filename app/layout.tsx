@@ -96,10 +96,10 @@ export default function RootLayout({
         {/* Ambient background grid */}
         <div className="pointer-events-none fixed inset-0 z-0 bg-grid-pattern opacity-60" />
 
-        {/* Ambient background glow orbs */}
-        <div className="pointer-events-none fixed -left-48 top-0 z-0 h-[600px] w-[600px] rounded-full bg-emerald-500/10 blur-[130px] dark:bg-emerald-500/15" />
-        <div className="pointer-events-none fixed -right-48 top-1/4 z-0 h-[650px] w-[650px] rounded-full bg-cyan-500/10 blur-[140px] dark:bg-cyan-500/15" />
-        <div className="pointer-events-none fixed left-1/3 bottom-10 z-0 h-[700px] w-[700px] rounded-full bg-blue-600/10 blur-[160px] dark:bg-blue-600/10" />
+        {/* Ambient background glow orbs with GPU compositing */}
+        <div className="pointer-events-none fixed -left-48 top-0 z-0 h-[600px] w-[600px] rounded-full bg-emerald-500/10 blur-[130px] dark:bg-emerald-500/15 transform-gpu" />
+        <div className="pointer-events-none fixed -right-48 top-1/4 z-0 h-[650px] w-[650px] rounded-full bg-cyan-500/10 blur-[140px] dark:bg-cyan-500/15 transform-gpu" />
+        <div className="pointer-events-none fixed left-1/3 bottom-10 z-0 h-[700px] w-[700px] rounded-full bg-blue-600/10 blur-[160px] dark:bg-blue-600/10 transform-gpu" />
 
         <Navbar />
         <div className="relative z-10 flex-1">{children}</div>

@@ -1,15 +1,27 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaBriefcase, FaGraduationCap, FaCalendarAlt, FaDownload, FaArrowRight } from "react-icons/fa";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
-const experiences = [
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  type: string;
+  logo?: string;
+  tech: string[];
+  points: string[];
+}
+
+const experiences: ExperienceItem[] = [
   {
     role: "Full Stack Developer",
     company: "MaMo TechnoLabs LLP",
+    logo: "/companies/mamo-technolabs.png",
     period: "JAN 2026 — Present",
     type: "Work",
     tech: ["Next.js", "Node.js", "MongoDB", "Supabase", "OpenAI API", "Gemini AI"],
@@ -23,6 +35,7 @@ const experiences = [
   {
     role: "Associate Software Developer",
     company: "Getmeonline Internet Excellency",
+    logo: "/companies/getmeonline.png",
     period: "MAR 2025 — DEC 2025",
     type: "Work",
     tech: ["React.js", "Node.js", "Microsoft Azure", "RESTful API", "MongoDB"],
@@ -48,8 +61,9 @@ const experiences = [
 ];
 
 const education = {
-  degree: "B.Tech in Information Technology",
+  degree: "B.Tech in Computer Science And Engineering",
   institution: "Parul University",
+  logo: "/education/parul-university.png",
   period: "Graduated: 2020 – 2024",
   gpa: "GPA: 7.6 / 10",
   highlights:
@@ -93,9 +107,21 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-white">
-                      <FaBriefcase className="text-sm" />
-                    </div>
+                    {exp.logo ? (
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xs dark:border-white/15 dark:bg-white">
+                        <Image
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          width={36}
+                          height={36}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-white">
+                        <FaBriefcase className="text-sm" />
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                         {exp.role}
@@ -147,9 +173,21 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-white">
-                  <FaGraduationCap className="text-base" />
-                </div>
+                {education.logo ? (
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-2xs dark:border-white/15 dark:bg-white">
+                    <Image
+                      src={education.logo}
+                      alt={`${education.institution} logo`}
+                      width={36}
+                      height={36}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-white">
+                    <FaGraduationCap className="text-base" />
+                  </div>
+                )}
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                     {education.degree}

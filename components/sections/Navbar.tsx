@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 interface NavItem {
@@ -143,43 +144,51 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Dropdown */}
-        {mobileOpen && (
-          <div className="mt-2 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/95 md:hidden">
-            <nav className="space-y-1">
-              {navItems.map((it) => {
-                const active = isLinkActive(it.href);
-                return (
-                  <Link
-                    key={it.href}
-                    href={it.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-all ${
-                      active
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                        : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
-                    }`}
-                  >
-                    <span>{it.label}</span>
-                    {active && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    )}
-                  </Link>
-                );
-              })}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="mt-2 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/95 md:hidden"
+            >
+              <nav className="space-y-1">
+                {navItems.map((it) => {
+                  const active = isLinkActive(it.href);
+                  return (
+                    <Link
+                      key={it.href}
+                      href={it.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-all ${
+                        active
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                          : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
+                      }`}
+                    >
+                      <span>{it.label}</span>
+                      {active && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      )}
+                    </Link>
+                  );
+                })}
 
-              <div className="pt-2 border-t border-slate-100 dark:border-white/10 mt-2">
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-2.5 text-center text-xs font-semibold text-white shadow-xs dark:bg-white dark:text-slate-950"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span>Let&apos;s Connect</span>
-                </Link>
-              </div>
-            </nav>
-          </div>
-        )}
+                <div className="pt-2 border-t border-slate-100 dark:border-white/10 mt-2">
+                  <Link
+                    href="/contact"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-2.5 text-center text-xs font-semibold text-white shadow-xs dark:bg-white dark:text-slate-950"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span>Let&apos;s Connect</span>
+                  </Link>
+                </div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

@@ -122,7 +122,7 @@ export default function Skills() {
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-background to-transparent" />
 
           <motion.div
-            className="flex w-max gap-8 sm:gap-12"
+            className="flex w-max gap-8 sm:gap-12 will-change-transform transform-gpu"
             animate={controls}
           >
             {loopedSkills.map((skill, index) => (
