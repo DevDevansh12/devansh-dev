@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+    "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
   authors: [{ name: "Devansh Variya", url: "https://devanshvariya.com" }],
   creator: "Devansh Variya",
   publisher: "Devansh Variya",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Devansh Variya",
     title: "Devansh Variya | Full Stack Developer & Software Engineer",
     description:
-      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+      "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
     images: [
       {
         url: "https://devanshvariya.com/devansh-profile.jpg",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Devansh Variya | Full Stack Developer & Software Engineer",
     description:
-      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+      "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
   },
   icons: {

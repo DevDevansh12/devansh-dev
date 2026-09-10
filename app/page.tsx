@@ -5,7 +5,7 @@ import Hero from "@/components/sections/Hero";
 export const metadata: Metadata = {
   title: "Devansh Variya | Full Stack Developer & Software Engineer",
   description:
-    "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+    "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
   alternates: {
     canonical: "https://devanshvariya.com/",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://devanshvariya.com/",
     title: "Devansh Variya | Full Stack Developer & Software Engineer",
     description:
-      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+      "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
     siteName: "Devansh Variya",
     locale: "en_US",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Devansh Variya | Full Stack Developer & Software Engineer",
     description:
-      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+      "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
   },
 };
