@@ -56,7 +56,7 @@ const education = {
     "Mastered core Computer Science & IT fundamentals: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, and Modern Web Architectures.",
 };
 
-export default function Experience() {
+export default function Experience({ isPage = false }: { isPage?: boolean }) {
   return (
     <Section id="experience" className="py-20 sm:py-28">
       <Container>
@@ -65,9 +65,15 @@ export default function Experience() {
           <span className="inline-block rounded-full border border-slate-200 bg-slate-100 px-3.5 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 mb-3">
             Career Journey
           </span>
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
-            Experience & Education
-          </h2>
+          {isPage ? (
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+              Experience
+            </h1>
+          ) : (
+            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
+              Experience & Education
+            </h2>
+          )}
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600 dark:text-slate-400">
             A track record of engineering scalable full-stack applications and AI integrations across production environments.
           </p>

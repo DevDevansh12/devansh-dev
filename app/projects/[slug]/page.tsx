@@ -15,6 +15,40 @@ import { projects, getProjectBySlug } from "@/data/projects";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
+const projectSeoData: Record<
+  string,
+  { title: string; description: string; schemaDescription: string }
+> = {
+  "internship-portal": {
+    title: "Internship Portal | Full Stack Project by Devansh Variya",
+    description:
+      "Explore Internship Portal, a full stack web development project by Devansh Variya. View its features, technology stack, development approach and implementation.",
+    schemaDescription:
+      "Internship Portal is a full stack web development project created by Devansh Variya.",
+  },
+  thelocator: {
+    title: "TheLocator | Web Development Project by Devansh Variya",
+    description:
+      "Explore TheLocator, a web development project by Devansh Variya. Discover the project's features, technology stack, design and development approach.",
+    schemaDescription:
+      "TheLocator is a web development project created by Devansh Variya.",
+  },
+  "vedoo-architect": {
+    title: "Vedoo Architect | Architecture Website Project by Devansh Variya",
+    description:
+      "Explore Vedoo Architect, a modern architecture website project developed by Devansh Variya, featuring responsive design, project presentation and web development.",
+    schemaDescription:
+      "Vedoo Architect is an architecture-focused website project developed by Devansh Variya.",
+  },
+  "smart-billing-desk": {
+    title: "Smart Billing Desk | Billing Software Project by Devansh Variya",
+    description:
+      "Explore Smart Billing Desk, a billing and business management project developed by Devansh Variya. View its features, technology stack and development details.",
+    schemaDescription:
+      "Smart Billing Desk is a billing and business management web development project created by Devansh Variya.",
+  },
+};
+
 export async function generateStaticParams() {
   return projects.map((p) => ({
     slug: p.slug,
@@ -35,9 +69,43 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${project.title} — Case Study | Devansh Variya`,
+  const seo = projectSeoData[slug] || {
+    title: `${project.title} | Full Stack Project by Devansh Variya`,
     description: project.shortDescription,
+    schemaDescription: project.shortDescription,
+  };
+
+  const canonicalUrl = `https://devanshvariya.com/projects/${slug}`;
+  const imageUrl = project.image.startsWith("http")
+    ? project.image
+    : `https://devanshvariya.com${project.image}`;
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: "article",
+      url: canonicalUrl,
+      title: seo.title,
+      description: seo.description,
+      images: [
+        {
+          url: imageUrl,
+          alt: project.title,
+        },
+      ],
+      siteName: "Devansh Variya",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -53,11 +121,71 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
+  const seo = projectSeoData[slug] || {
+    title: `${project.title} | Full Stack Project by Devansh Variya`,
+    description: project.shortDescription,
+    schemaDescription: project.shortDescription,
+  };
+
+  const creativeWorkJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `https://devanshvariya.com/projects/${slug}#project`,
+    name: project.title,
+    url: `https://devanshvariya.com/projects/${slug}`,
+    description: seo.schemaDescription,
+    creator: {
+      "@type": "Person",
+      "@id": "https://devanshvariya.com/#person",
+      name: "Devansh Variya",
+    },
+    author: {
+      "@id": "https://devanshvariya.com/#person",
+    },
+    isPartOf: {
+      "@id": "https://devanshvariya.com/projects#page",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devanshvariya.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: "https://devanshvariya.com/projects",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `https://devanshvariya.com/projects/${slug}`,
+      },
+    ],
+  };
+
   return (
-    <Section className="pt-28 pb-20 sm:pt-36 sm:pb-28">
-      <Container>
-        {/* Breadcrumb & Navigation */}
-        <div className="mb-8 flex items-center justify-between">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <Section className="pt-28 pb-20 sm:pt-36 sm:pb-28">
+        <Container>
+          {/* Breadcrumb & Navigation */}
+          <div className="mb-8 flex items-center justify-between">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
@@ -322,5 +450,6 @@ export default async function ProjectDetailPage({
         </div>
       </Container>
     </Section>
+    </>
   );
 }

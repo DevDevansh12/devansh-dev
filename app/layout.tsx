@@ -16,12 +16,51 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://devanshvariya.com"),
   title: {
-    default: "Devansh Variya | Full Stack & AI Developer",
-    template: "%s | Devansh Variya",
+    default: "Devansh Variya | Full Stack Developer & Software Engineer",
+    template: "%s",
   },
   description:
-    "Full Stack Developer specializing in AI-integrated web applications using React.js, Next.js, and Node.js.",
+    "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+  authors: [{ name: "Devansh Variya", url: "https://devanshvariya.com" }],
+  creator: "Devansh Variya",
+  publisher: "Devansh Variya",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://devanshvariya.com/",
+    siteName: "Devansh Variya",
+    title: "Devansh Variya | Full Stack Developer & Software Engineer",
+    description:
+      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+    images: [
+      {
+        url: "https://devanshvariya.com/devansh-profile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Devansh Variya - Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Devansh Variya | Full Stack Developer & Software Engineer",
+    description:
+      "Devansh Variya is a Full Stack Developer specializing in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
+    images: ["https://devanshvariya.com/devansh-profile.jpg"],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

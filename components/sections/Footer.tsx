@@ -362,10 +362,10 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-xs">
               {[
-                { label: "Food Delivery Platform", href: "/projects/food-delivery-app" },
-                { label: "Salon Appointment System", href: "/projects/salon-booking-system" },
-                { label: "Staff Location Tracking", href: "/projects/staff-tracking-system" },
-                { label: "Real-Time Chat Application", href: "/projects/chat-application" },
+                { label: "Internship Portal", href: "/projects/internship-portal" },
+                { label: "TheLocator", href: "/projects/thelocator" },
+                { label: "Vedoo Architect", href: "/projects/vedoo-architect" },
+                { label: "Smart Billing Desk", href: "/projects/smart-billing-desk" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link

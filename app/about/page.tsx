@@ -19,9 +19,69 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
 export const metadata: Metadata = {
-  title: "About Devansh Variya | Full Stack & AI Developer",
+  title: "About Devansh Variya | Full Stack Developer",
   description:
-    "Learn about Devansh Variya's engineering background, B.Tech IT from Parul University, development philosophy, and experience building AI-integrated web applications.",
+    "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+  alternates: {
+    canonical: "https://devanshvariya.com/about",
+  },
+  openGraph: {
+    type: "profile",
+    url: "https://devanshvariya.com/about",
+    title: "About Devansh Variya | Full Stack Developer",
+    description:
+      "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+    images: ["https://devanshvariya.com/devansh-profile.jpg"],
+    siteName: "Devansh Variya",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Devansh Variya | Full Stack Developer",
+    description:
+      "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+    images: ["https://devanshvariya.com/devansh-profile.jpg"],
+  },
+};
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://devanshvariya.com/about#profile",
+  "url": "https://devanshvariya.com/about",
+  "name": "About Devansh Variya",
+  "description":
+    "About Devansh Variya, Full Stack Developer and Software Engineer.",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://devanshvariya.com/#person",
+    "name": "Devansh Variya",
+    "url": "https://devanshvariya.com/",
+    "jobTitle": "Full Stack Developer",
+    "sameAs": [
+      "https://www.linkedin.com/in/devansh-variya/",
+      "https://github.com/devdevansh12",
+    ],
+  },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://devanshvariya.com/",
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://devanshvariya.com/about",
+    },
+  ],
 };
 
 const stats = [
@@ -79,20 +139,29 @@ const technicalExpertise = [
 
 export default function AboutPage() {
   return (
-    <Section className="pt-28 pb-20 sm:pt-36 sm:pb-28">
-      <Container>
-        {/* Page Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block rounded-full border border-slate-200 bg-slate-100 px-3.5 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 mb-3">
-            About Me
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Engineering Thoughtful Web & AI Solutions
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-400">
-            Passionate Full Stack Developer driven by performance, clean architecture, and practical AI integrations.
-          </p>
-        </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <Section className="pt-28 pb-20 sm:pt-36 sm:pb-28">
+        <Container>
+          {/* Page Header */}
+          <div className="text-center mb-16">
+            <span className="inline-block rounded-full border border-slate-200 bg-slate-100 px-3.5 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 mb-3">
+              About Me
+            </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              About Devansh Variya
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-400">
+              Engineering Thoughtful Web & AI Solutions — passionate Full Stack Developer driven by performance, clean architecture, and practical AI integrations.
+            </p>
+          </div>
 
         {/* Bio & Profile Card Grid */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 items-center mb-20">
@@ -373,6 +442,7 @@ export default function AboutPage() {
           </div>
         </div>
       </Container>
-    </Section>
+      </Section>
+    </>
   );
 }
