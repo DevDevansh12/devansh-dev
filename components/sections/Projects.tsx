@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaArrowRight, FaStar } from "react-icons/fa";
 import { projects } from "@/data/projects";
 import Container from "@/components/ui/Container";
@@ -40,14 +39,10 @@ export default function Projects() {
         {/* Projects 2x2 Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {projects.map((p, i) => (
-            <motion.div
+            <div
               key={p.slug}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
               onClick={(e) => handleCardClick(p.slug, e)}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer"
             >
               {/* Image Banner */}
               <div className="relative h-60 w-full overflow-hidden bg-slate-100 dark:bg-slate-950 block">
@@ -61,12 +56,12 @@ export default function Projects() {
                 <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-transparent opacity-70" />
 
                 {/* Highlight Tag */}
-                <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-3 py-1 text-[11px] font-semibold text-slate-800 shadow-2xs backdrop-blur-md dark:border-white/15 dark:bg-slate-900/90 dark:text-slate-200">
+                <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white px-3 py-1 text-[11px] font-semibold text-slate-800 shadow-2xs dark:border-white/15 dark:bg-slate-900 dark:text-slate-200">
                   <FaStar className="text-[10px] text-amber-500" />
                   <span>{p.highlight}</span>
                 </div>
 
-                <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/60 px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-white backdrop-blur-md">
+                <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/60 px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-white">
                   0{i + 1}
                 </div>
               </div>
@@ -128,7 +123,7 @@ export default function Projects() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

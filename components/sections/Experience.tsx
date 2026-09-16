@@ -1,8 +1,9 @@
-"use client";
+// Server Component — no "use client", no framer-motion.
+// Cards fade in via CSS @keyframes (card-fade-in in globals.css), which runs
+// without any JavaScript and has zero impact on main-thread time.
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { FaBriefcase, FaGraduationCap, FaCalendarAlt, FaDownload, FaArrowRight } from "react-icons/fa";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -53,8 +54,8 @@ const experiences: ExperienceItem[] = [
     type: "Work",
     tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "Figma"],
     points: [
-      "Developed full-stack features across the MERN stack (MongoDB, Express.js, React.js, Node.js), contributing to 2+ production releases.",
-      "Investigated and resolved 10+ core software defects, dramatically improving application stability and reducing error rates.",
+      "Developed full-stack features across the MERN stack, contributing to 2+ production releases.",
+      "Investigated and resolved 10+ core software defects, dramatically improving application stability.",
       "Translated Figma design specifications into pixel-perfect, accessible React components with Tailwind CSS.",
     ],
   },
@@ -85,7 +86,7 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
             </h1>
           ) : (
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-slate-900 dark:text-white">
-              Experience & Education
+              Experience &amp; Education
             </h2>
           )}
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600 dark:text-slate-400">
@@ -96,14 +97,10 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
         <div className="max-w-4xl mx-auto space-y-6">
           {/* Work Experience Timeline */}
           <div className="space-y-5">
-            {experiences.map((exp, idx) => (
-              <motion.div
+            {experiences.map((exp) => (
+              <div
                 key={exp.company}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-all duration-300 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
                   <div className="flex items-center gap-3">
@@ -115,6 +112,7 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
                           width={36}
                           height={36}
                           className="h-full w-full object-contain"
+                          loading="lazy"
                         />
                       </div>
                     ) : (
@@ -131,14 +129,12 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
                       </p>
                     </div>
                   </div>
-
                   <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
                     <FaCalendarAlt className="text-slate-400 text-xs" />
                     <span>{exp.period}</span>
                   </div>
                 </div>
 
-                {/* Tech Tags */}
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {exp.tech.map((t) => (
                     <span
@@ -150,44 +146,32 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
                   ))}
                 </div>
 
-                {/* Bullet Points */}
                 <ul className="mt-5 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  {exp.points.map((p, pIdx) => (
-                    <li key={pIdx} className="flex items-start gap-2.5">
+                  {exp.points.map((p) => (
+                    <li key={p} className="flex items-start gap-2.5">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
                       <span>{p}</span>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Education Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs dark:border-white/10 dark:bg-slate-900/80"
-          >
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs dark:border-white/10 dark:bg-slate-900/80">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
               <div className="flex items-center gap-3">
-                {education.logo ? (
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-2xs dark:border-white/15 dark:bg-white">
-                    <Image
-                      src={education.logo}
-                      alt={`${education.institution} logo`}
-                      width={36}
-                      height={36}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-white">
-                    <FaGraduationCap className="text-base" />
-                  </div>
-                )}
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-2xs dark:border-white/15 dark:bg-white">
+                  <Image
+                    src={education.logo}
+                    alt={`${education.institution} logo`}
+                    width={36}
+                    height={36}
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                     {education.degree}
@@ -197,7 +181,6 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
                   </p>
                 </div>
               </div>
-
               <div className="flex items-center gap-3 text-xs font-medium text-slate-500 dark:text-slate-400">
                 <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-emerald-800 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400 font-semibold">
                   {education.gpa}
@@ -205,13 +188,12 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
                 <span>{education.period}</span>
               </div>
             </div>
-
             <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               {education.highlights}
             </p>
-          </motion.div>
+          </div>
 
-          {/* Quick Actions Bar */}
+          {/* Quick Actions */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
             <a
               href="https://drive.google.com/file/d/1sHYK7WMQ61893vPnUmwrlczXs5veeUMs/view?usp=sharing"
@@ -222,7 +204,6 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
               <FaDownload className="text-xs" />
               <span>Download Official Resume</span>
             </a>
-
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-xs font-semibold text-slate-800 shadow-2xs transition-all duration-150 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20 cursor-pointer"

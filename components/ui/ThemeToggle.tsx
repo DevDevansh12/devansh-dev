@@ -9,12 +9,14 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    // Default to light theme only
     const next: "light" | "dark" = stored === "dark" ? "dark" : "light";
-
-    setTheme(next);
     document.documentElement.dataset.theme = next;
-    setMounted(true);
+    // Deferred so the state update doesn't happen synchronously in the effect body
+    const id = setTimeout(() => {
+      setTheme(next);
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(id);
   }, []);
 
   function toggle() {
@@ -35,14 +37,14 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       suppressHydrationWarning
-      className="group relative flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-700 shadow-sm backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:scale-105 active:scale-95 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-cyan-400/50"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-700 shadow-sm transition-colors hover:border-cyan-400 active:scale-95 dark:border-white/10 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-cyan-400/50"
       aria-label="Toggle theme"
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       {theme === "dark" ? (
-        <FaSun className="text-amber-400 transition-transform duration-500 group-hover:rotate-90 group-hover:scale-110 text-sm" />
+        <FaSun className="text-amber-400 text-sm" />
       ) : (
-        <FaMoon className="text-indigo-600 transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110 text-sm" />
+        <FaMoon className="text-indigo-600 text-sm" />
       )}
     </button>
   );

@@ -9,6 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@iconify-json/carbon": "^1.2.27",
+    "@iconify-json/devicon": "^1.2.62",
+    "@iconify-json/logos": "^1.2.14",
+    "@iconify-json/simple-icons": "^1.2.95",
     "@iconify/react": "^6.0.2",
     "framer-motion": "^12.43.0",
     "next": "16.2.9",
@@ -20,7 +24,7 @@
     "theme-toggles": "^4.10.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19",

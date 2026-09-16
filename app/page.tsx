@@ -71,10 +71,13 @@ const jsonLd = {
 };
 
 import Hero from "@/components/sections/Hero";
-import Experience from "@/components/sections/Experience";
-import Skills from "@/components/sections/Skills";
-import Projects from "@/components/sections/Projects";
-import Contact from "@/components/sections/Contact";
+import dynamic from "next/dynamic";
+
+// Below-fold sections — split into separate JS chunks, fetched after Hero paints
+const Experience = dynamic(() => import("@/components/sections/Experience"));
+const Skills     = dynamic(() => import("@/components/sections/Skills"));
+const Projects   = dynamic(() => import("@/components/sections/Projects"));
+const Contact    = dynamic(() => import("@/components/sections/Contact"));
 
 export default function Home() {
   return (

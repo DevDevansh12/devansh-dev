@@ -27,7 +27,15 @@ export default function ProjectsGallery({ initialProjects }: ProjectsGalleryProp
 
   const filteredProjects = initialProjects.filter((p) => {
     if (selectedCategory === "All Projects") return true;
-    if (selectedCategory === "Full Stack") return p.category.includes("Full-Stack") || p.category.includes("Management");
+    if (selectedCategory === "Full Stack") {
+      // Match "Full Stack" in category string (handles "Full Stack / AI Web Application",
+      // "Enterprise Administration Platform", etc.) or AI services present
+      return (
+        p.category.toLowerCase().includes("full stack") ||
+        p.category.toLowerCase().includes("enterprise") ||
+        p.category.toLowerCase().includes("commercial")
+      );
+    }
     if (selectedCategory === "AI & Automation") return p.category.includes("AI") || Boolean(p.techStack.aiServices && p.techStack.aiServices.length > 0);
     if (selectedCategory === "Real-Time") return p.tags.some((t) => t.includes("Real-Time") || t.includes("Leaflet") || t.includes("WebSockets"));
     return true;
@@ -58,7 +66,7 @@ export default function ProjectsGallery({ initialProjects }: ProjectsGalleryProp
           <div
             key={p.slug}
             onClick={(e) => handleCardClick(p.slug, e)}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer"
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer"
           >
             {/* Image Preview with click to case study */}
             <div className="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-slate-950 block">
@@ -72,12 +80,12 @@ export default function ProjectsGallery({ initialProjects }: ProjectsGalleryProp
               <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-transparent opacity-70" />
 
               {/* Highlight Badge */}
-              <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-3 py-1 text-[11px] font-semibold text-slate-800 shadow-2xs backdrop-blur-md dark:border-white/15 dark:bg-slate-900/90 dark:text-slate-200">
+              <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white px-3 py-1 text-[11px] font-semibold text-slate-800 shadow-2xs dark:border-white/15 dark:bg-slate-900 dark:text-slate-200">
                 <FaStar className="text-[10px] text-amber-500" />
                 <span>{p.highlight}</span>
               </div>
 
-              <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/60 px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-white backdrop-blur-md">
+              <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/60 px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-white">
                 0{idx + 1}
               </div>
             </div>

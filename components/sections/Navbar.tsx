@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 interface NavItem {
@@ -25,16 +24,26 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let rafId = 0;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+      });
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
-    setMobileOpen(false);
+    // Wrapping in a microtask avoids calling setState synchronously
+    // in the effect body, which can cause cascading renders.
+    const id = setTimeout(() => setMobileOpen(false), 0);
+    return () => clearTimeout(id);
   }, [pathname]);
 
   const isLinkActive = (href: string) => {
@@ -43,13 +52,13 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 transition-all duration-300">
+    <header className="fixed left-0 right-0 top-0 z-50" style={{ contain: "layout style" }}>
       <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
         <div
-          className={`flex items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-300 backdrop-blur-xl ${
+          className={`flex items-center justify-between rounded-2xl border px-4 py-2.5 transition-colors duration-200 ${
             scrolled
-              ? "border-slate-200/90 bg-white/90 shadow-md shadow-slate-900/5 dark:border-white/10 dark:bg-slate-950/85"
-              : "border-slate-200/60 bg-white/70 shadow-xs dark:border-white/10 dark:bg-slate-950/60"
+              ? "border-slate-200/90 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950"
+              : "border-slate-200/60 bg-white/95 dark:border-white/10 dark:bg-slate-950/95"
           }`}
         >
           {/* Logo Brand */}
@@ -144,51 +153,45 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Dropdown */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="mt-2 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/95 md:hidden"
-            >
-              <nav className="space-y-1">
-                {navItems.map((it) => {
-                  const active = isLinkActive(it.href);
-                  return (
-                    <Link
-                      key={it.href}
-                      href={it.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-all ${
-                        active
-                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                          : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
-                      }`}
-                    >
-                      <span>{it.label}</span>
-                      {active && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                      )}
-                    </Link>
-                  );
-                })}
+        <div
+          className={`mt-2 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-lg dark:border-white/10 dark:bg-slate-950 md:hidden transition-opacity duration-150 ${
+            mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none h-0"
+          }`}
+        >
+          <nav className="space-y-1 p-3">
+            {navItems.map((it) => {
+              const active = isLinkActive(it.href);
+              return (
+                <Link
+                  key={it.href}
+                  href={it.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-all ${
+                    active
+                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                      : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
+                  }`}
+                >
+                  <span>{it.label}</span>
+                  {active && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  )}
+                </Link>
+              );
+            })}
 
-                <div className="pt-2 border-t border-slate-100 dark:border-white/10 mt-2">
-                  <Link
-                    href="/contact"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-2.5 text-center text-xs font-semibold text-white shadow-xs dark:bg-white dark:text-slate-950"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    <span>Let&apos;s Connect</span>
-                  </Link>
-                </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <div className="pt-2 border-t border-slate-100 dark:border-white/10 mt-2">
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-2.5 text-center text-xs font-semibold text-white shadow-xs dark:bg-white dark:text-slate-950"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span>Let&apos;s Connect</span>
+              </Link>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );

@@ -9,7 +9,6 @@ import {
   FaCogs,
   FaLayerGroup,
   FaChartLine,
-  FaStar,
 } from "react-icons/fa";
 import { projects, getProjectBySlug } from "@/data/projects";
 import Container from "@/components/ui/Container";

@@ -30,7 +30,7 @@ export const projects: Project[] = [
     subtitle: "Professional Business Invoice Generator",
     category: "Full Stack / AI Web Application",
     liveUrl: "https://smartbillingdesk.com/",
-    image: "/projects/smart-billing-desk.png",
+    image: "/projects/smart-billing-desk.webp",
     highlight: "OpenAI Integrated",
     tags: ["React.js", "OpenAI API", "Redux", "Razorpay", "Supabase", "Node.js"],
     shortDescription:
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     subtitle: "Intern Management & Admin Dashboard",
     category: "Enterprise Administration Platform",
     liveUrl: "https://portal.mamotechnolabs.com/",
-    image: "/projects/internship-portal.png",
+    image: "/projects/internship-portal.webp",
     highlight: "1,000+ Interns Tracked",
     tags: ["React.js", "TypeScript", "Supabase", "Node.js", "Razorpay"],
     shortDescription:
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     subtitle: "Architect Platform with Payment Gateway",
     category: "Commercial Architecture & AI Platform",
     liveUrl: "https://vedoo.co/",
-    image: "/projects/vedoo-architect.png",
+    image: "/projects/vedoo-architect.webp",
     highlight: "Gemini AI Chatbot",
     tags: ["React.js", "Gemini AI", "Custom Chatbot", "Supabase", "Razorpay"],
     shortDescription:
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     subtitle: "Workshop Management System",
     category: "Cloud Event & Workshop Platform",
     liveUrl: "https://thelocatr.com/",
-    image: "/projects/thelocator.png",
+    image: "/projects/thelocator.webp",
     highlight: "Azure Deployed",
     tags: ["React.js", "Redux", "OpenAI API", "Microsoft Azure", "Node.js", "Express.js"],
     shortDescription:

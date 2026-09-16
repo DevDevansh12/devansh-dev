@@ -26,11 +26,17 @@ html[data-theme="dark"] {
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll only for anchor/hash navigation, not route transitions */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-scroll-behavior="smooth"] {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -41,17 +47,24 @@ body {
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Universal interactive transitions for silky smooth hover and focus */
+/* Universal interactive transitions — transform and box-shadow excluded to avoid repaint */
 a, button, input, textarea, select {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-property: color, background-color, border-color, opacity;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  transition-duration: 200ms;
+  transition-duration: 150ms;
 }
 
 /* Elegant Text Selection */
 ::selection {
   background-color: rgba(16, 185, 129, 0.25);
   color: inherit;
+}
+
+/* Ambient background elements */
+.bg-grid-pattern,
+.glow-orb {
+  transform: translateZ(0);
+  contain: paint;
 }
 
 /* Ambient background grid: default light mode */
@@ -131,3 +144,29 @@ html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
   animation-play-state: paused;
 }
 
+
+/* Skills section marquee — pure CSS, pauses on hover, zero JS */
+@keyframes skills-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+.skills-marquee {
+  will-change: transform;
+  transform: translateZ(0);
+  animation: skills-marquee 30s linear infinite;
+}
+.skills-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+
+/* LiveBorder CSS animation — replaces the rAF JS loop */
+@keyframes live-border-sweep {
+  from { transform: translateX(-66.6%); }
+  to   { transform: translateX(0%); }
+}
+.live-border-glow {
+  animation: live-border-sweep 5s linear infinite;
+  will-change: transform;
+}

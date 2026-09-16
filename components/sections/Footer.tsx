@@ -16,7 +16,6 @@ import {
   FaClock,
   FaTerminal,
   FaHeart,
-  FaRocket,
 } from "react-icons/fa";
 
 const MARQUEE_ITEMS = [
@@ -40,6 +39,14 @@ export default function Footer() {
   const [hasHighFived, setHasHighFived] = useState(false);
   const [sparkle, setSparkle] = useState(false);
 
+  // Sync highFives from localStorage after hydration — avoids SSR mismatch
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("devansh_high_fives");
+      if (saved) setHighFives(parseInt(saved, 10));
+    } catch { /* ignore */ }
+  }, []);
+
   // Live Vadodara Clock (Asia/Kolkata)
   useEffect(() => {
     const updateTime = () => {
@@ -58,17 +65,7 @@ export default function Footer() {
     return () => clearInterval(timer);
   }, []);
 
-  // Persistent High-Five Easter Egg
-  useEffect(() => {
-    try {
-      const savedCount = localStorage.getItem("devansh_high_fives");
-      if (savedCount) {
-        setHighFives(parseInt(savedCount, 10));
-      }
-    } catch {
-      // Safe fallback
-    }
-  }, []);
+
 
   const handleHighFive = () => {
     const newCount = highFives + 1;
@@ -95,7 +92,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-slate-200/80 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 transition-colors duration-300">
+    <footer className="relative overflow-hidden border-t border-slate-200/80 bg-white dark:border-white/10 dark:bg-slate-950 transition-colors duration-300">
       {/* 1. Creative Infinite Marquee Ticker */}
       <div className="relative w-full border-b border-slate-200/70 bg-slate-100/60 py-2.5 overflow-hidden dark:border-white/5 dark:bg-white/[0.02]">
         {/* Left & Right gradient fades */}
@@ -157,7 +154,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-xs font-bold text-white shadow-md transition-all hover:bg-slate-800 hover:shadow-lg active:scale-95 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-xs font-bold text-white transition-colors hover:bg-slate-800 active:scale-95 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
                 >
                   <FaEnvelope className="text-xs" />
                   <span>Let&apos;s Connect</span>
@@ -215,7 +212,7 @@ export default function Footer() {
 
                 {/* Terminal Code Body */}
                 <div className="space-y-1 text-[11px] sm:text-xs leading-relaxed">
-                  <p className="text-slate-500">// Quick Developer Dossier</p>
+                  <p className="text-slate-500">{"// Quick Developer Dossier"}</p>
                   <p>
                     <span className="text-pink-400">const</span>{" "}
                     <span className="text-emerald-400">engineer</span> = &#123;
@@ -276,19 +273,13 @@ export default function Footer() {
               className="group inline-flex items-center focus:outline-none"
               aria-label="Devansh Variya - Home"
             >
+              {/* Single image, themed via CSS invert so both modes are covered */}
               <Image
                 src="/devansh-logo-light.png"
                 alt="Devansh Variya"
                 width={220}
                 height={26}
-                className="h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] dark:hidden"
-              />
-              <Image
-                src="/devansh-logo-dark.png"
-                alt="Devansh Variya"
-                width={220}
-                height={26}
-                className="hidden h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] dark:block"
+                className="h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] dark:invert"
               />
             </Link>
 
