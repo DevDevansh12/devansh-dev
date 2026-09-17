@@ -172,43 +172,31 @@ a, button, input, textarea, select {
   will-change: transform;
 }
 
-/* ──────────── ROTATING GRADIENT BORDER ──────────── */
-@keyframes gradient-rotate {
+/* ──────────── SLEEK BORDER BEAM & SOFT AURA ──────────── */
+@keyframes border-beam-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-.gradient-border-spin::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    #00bc87,
-    #00babc,
-    #6366f1,
-    #ec4899,
-    #f59e0b,
-    #00bc87
-  );
-  animation: gradient-rotate 6s linear infinite;
-  z-index: -1;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
+.border-beam {
+  animation: border-beam-spin 5s linear infinite;
+  will-change: transform;
 }
 
-.gradient-border-spin:hover::before {
-  opacity: 0.85;
+@keyframes aura-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+  }
 }
 
-.gradient-border-spin::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--card-bg);
-  z-index: -1;
+.aura-pulse {
+  animation: aura-pulse 4s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* ──────────── GRADIENT TEXT SHIMMER ──────────── */
@@ -488,8 +476,8 @@ html[data-theme="dark"] .project-card-glow:hover {
   .animate-slide-in-right,
   .animate-scale-in,
   .glow-orb-1,
-  .glow-orb-2,
-  .gradient-border-spin::before,
+  .border-beam,
+  .aura-pulse,
   .text-shimmer {
     animation: none !important;
   }

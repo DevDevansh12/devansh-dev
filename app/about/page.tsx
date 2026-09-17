@@ -20,7 +20,7 @@ import Section from "@/components/ui/Section";
 export const metadata: Metadata = {
   title: "About Devansh Variya | Full Stack Developer",
   description:
-    "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+    "Learn about Devansh Variya, a Full Stack Developer building modern web apps with React, Next.js, Node.js, JavaScript, TypeScript, and AI technologies.",
   alternates: {
     canonical: "https://devanshvariya.com/about",
   },
@@ -28,8 +28,7 @@ export const metadata: Metadata = {
     type: "profile",
     url: "https://devanshvariya.com/about",
     title: "About Devansh Variya | Full Stack Developer",
-    description:
-      "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+    description: "",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
     siteName: "Devansh Variya",
     locale: "en_US",
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Devansh Variya | Full Stack Developer",
     description:
-      "Learn more about Devansh Variya, a Full Stack Developer focused on building modern web applications with React, Node.js, JavaScript, TypeScript and related technologies.",
+      "Learn about Devansh Variya, a Full Stack Developer building modern web apps with React, Next.js, Node.js, JavaScript, TypeScript, and AI technologies.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
   },
 };

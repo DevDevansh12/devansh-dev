@@ -174,41 +174,56 @@ export default function Hero() {
           {/* RIGHT COLUMN — profile card */}
           <div className="lg:col-span-5 flex justify-center animate-slide-in-right delay-300">
             <div className="relative w-full max-w-[340px] sm:max-w-[370px]">
-              {/* Glow behind the card */}
+              {/* Soft ambient aura glow behind the card (No jutting shapes) */}
               <div
-                className="glow-orb-2 pointer-events-none absolute -inset-4 z-0 rounded-3xl opacity-[0.12] blur-2xl"
-                style={{ background: "linear-gradient(135deg, #00bc87, #00babc, #6366f1)" }}
+                className="aura-pulse pointer-events-none absolute -inset-5 sm:-inset-7 -z-10 rounded-full opacity-60 blur-3xl dark:opacity-40"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(0, 188, 135, 0.45) 0%, rgba(0, 186, 188, 0.35) 45%, rgba(99, 102, 241, 0.2) 75%, transparent 100%)",
+                }}
               />
 
-              {/* Card */}
-              <div className="gradient-border-spin relative z-10 rounded-3xl border border-slate-200/90 bg-white p-3 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-slate-900/90 dark:shadow-2xl dark:shadow-black/70">
-                <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
-                  <Image
-                    src="/devansh-profile.png"
-                    alt="Devansh Variya"
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 316px, (max-width: 1024px) 344px, 370px"
-                    className="object-cover object-[center_18%]"
-                  />
-                  {/* Subtle gradient overlay at bottom of image */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/30 to-transparent dark:from-slate-900/40" />
-                </div>
+              {/* Sleek Border Beam Container - Perfectly clips the traveling light beam */}
+              <div className="relative rounded-[26px] p-[1.5px] overflow-hidden bg-slate-200/80 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 dark:bg-white/10 dark:shadow-2xl dark:shadow-black/70">
+                {/* Traveling glowing laser beam */}
+                <div
+                  className="border-beam pointer-events-none absolute -inset-[150%] opacity-100"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 65deg, #00bc87 90deg, #00babc 105deg, #6366f1 120deg, transparent 145deg, transparent 360deg)",
+                  }}
+                />
 
-                {/* Integrated Profile Metadata */}
-                <div className="mt-3.5 flex items-center justify-between px-2 pb-1">
-                  <div>
-                    <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Devansh Variya
-                    </h2>
-                    <p className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                      <FaMapMarkerAlt className="text-emerald-500 text-[10px]" />
-                      <span>Vadodara, Gujarat</span>
-                    </p>
+                {/* Inner Card Body */}
+                <div className="relative z-10 rounded-[24px] bg-white p-3 dark:bg-slate-900/95">
+                  <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
+                    <Image
+                      src="/devansh-profile.png"
+                      alt="Devansh Variya"
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 316px, (max-width: 1024px) 344px, 370px"
+                      className="object-cover object-[center_18%]"
+                    />
+                    {/* Subtle gradient overlay at bottom of image */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/30 to-transparent dark:from-slate-900/40" />
                   </div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    <span>Full Stack Developer</span>
+
+                  {/* Integrated Profile Metadata */}
+                  <div className="mt-3.5 flex items-center justify-between px-2 pb-1">
+                    <div>
+                      <h2 className="text-sm font-bold text-slate-900 dark:text-white">
+                        Devansh Variya
+                      </h2>
+                      <p className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        <FaMapMarkerAlt className="text-emerald-500 text-[10px]" />
+                        <span>Vadodara, Gujarat</span>
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span>Full Stack Developer</span>
+                    </div>
                   </div>
                 </div>
               </div>

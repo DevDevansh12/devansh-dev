@@ -7,7 +7,7 @@ import BlogGallery from "@/components/sections/BlogGallery";
 export const metadata: Metadata = {
   title: "Blog & Technical Insights | Devansh Variya – Full Stack Developer",
   description:
-    "Explore in-depth technical articles, engineering breakdowns, and architectural guides on Next.js, React 19, autonomous AI agents, real-time state, and cloud security by Devansh Variya.",
+    "Explore technical articles and architecture guides on Next.js, React, AI agents, real-time state, and cloud security by Devansh Variya.",
   alternates: {
     canonical: "https://devanshvariya.com/blog",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: "https://devanshvariya.com/blog",
     title: "Blog & Technical Insights | Devansh Variya – Full Stack Developer",
     description:
-      "Explore in-depth technical articles, engineering breakdowns, and architectural guides on Next.js, React 19, autonomous AI agents, real-time state, and cloud security by Devansh Variya.",
+      "Explore technical articles and architecture guides on Next.js, React, AI agents, real-time state, and cloud security by Devansh Variya.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
     siteName: "Devansh Variya",
     locale: "en_US",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog & Technical Insights | Devansh Variya – Full Stack Developer",
     description:
-      "Explore in-depth technical articles, engineering breakdowns, and architectural guides on Next.js, React 19, autonomous AI agents, real-time state, and cloud security by Devansh Variya.",
+      "Explore technical articles and architecture guides on Next.js, React, AI agents, real-time state, and cloud security by Devansh Variya.",
     images: ["https://devanshvariya.com/devansh-profile.jpg"],
   },
 };
