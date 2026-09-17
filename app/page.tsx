@@ -79,6 +79,14 @@ const Skills     = dynamic(() => import("@/components/sections/Skills"));
 const Projects   = dynamic(() => import("@/components/sections/Projects"));
 const Contact    = dynamic(() => import("@/components/sections/Contact"));
 
+function GradientDivider() {
+  return (
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="section-divider" />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -87,9 +95,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
+      <GradientDivider />
       <Experience />
+      <GradientDivider />
       <Skills />
+      <GradientDivider />
       <Projects />
+      <GradientDivider />
       <Contact />
     </>
   );

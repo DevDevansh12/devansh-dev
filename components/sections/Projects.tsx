@@ -34,6 +34,7 @@ export default function Projects() {
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600 dark:text-slate-400">
             Real-world applications engineered with modern frontend architectures, robust backend systems, and AI workflows.
           </p>
+          <div className="section-divider mt-8" />
         </div>
 
         {/* Projects 2x2 Grid */}
@@ -42,7 +43,12 @@ export default function Projects() {
             <div
               key={p.slug}
               onClick={(e) => handleCardClick(p.slug, e)}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+              }}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 cursor-pointer project-card-glow"
             >
               {/* Image Banner */}
               <div className="relative h-60 w-full overflow-hidden bg-slate-100 dark:bg-slate-950 block">

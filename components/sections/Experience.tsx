@@ -92,6 +92,7 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600 dark:text-slate-400">
             A track record of engineering scalable full-stack applications and AI integrations across production environments.
           </p>
+          <div className="section-divider mt-8" />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6">
@@ -100,7 +101,7 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
             {experiences.map((exp) => (
               <div
                 key={exp.company}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 exp-card-accent card-hover-lift"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
                   <div className="flex items-center gap-3">
@@ -159,7 +160,7 @@ export default function Experience({ isPage = false }: { isPage?: boolean }) {
           </div>
 
           {/* Education Card */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs dark:border-white/10 dark:bg-slate-900/80">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs dark:border-white/10 dark:bg-slate-900/80 card-hover-lift">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 dark:border-white/10">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-2xs dark:border-white/15 dark:bg-white">

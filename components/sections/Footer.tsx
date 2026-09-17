@@ -332,6 +332,7 @@ export default function Footer() {
                 { label: "About Me", href: "/about" },
                 { label: "Projects Showcase", href: "/projects" },
                 { label: "Career Journey", href: "/experience" },
+                { label: "Tech Blog", href: "/blog" },
                 { label: "Let's Connect", href: "/contact" },
               ].map((item) => (
                 <li key={item.href}>

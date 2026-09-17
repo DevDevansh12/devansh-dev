@@ -94,6 +94,7 @@ export default function Skills() {
             A comprehensive toolset spanning modern frontend frameworks, backend
             microservices, AI integrations, and cloud platforms.
           </p>
+          <div className="section-divider mt-8" />
         </div>
 
         {/* Infinite Icon Marquee — pure CSS, zero JS runtime cost */}
@@ -125,10 +126,10 @@ export default function Skills() {
           {categories.map((cat, i) => (
             <div
               key={cat.title}
-              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-xs transition-colors hover:border-slate-300 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20"
+              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-xs dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-white/20 card-hover-lift"
             >
               <div>
-                <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-800 dark:bg-white/10 dark:text-white">
+                <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-sm font-extrabold dark:bg-white/10 skill-category-number">
                   0{i + 1}
                 </div>
                 <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">

@@ -128,11 +128,12 @@ export default function Contact() {
           <p className="mx-auto mt-4 max-w-xl text-base text-slate-600 dark:text-slate-400">
             Have a project in mind, an opportunity to discuss, or just want to connect? Reach out via WhatsApp or email.
           </p>
+          <div className="section-divider mt-8" />
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 max-w-5xl mx-auto">
           {/* Left Info Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs dark:border-white/10 dark:bg-slate-900/80">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs dark:border-white/10 dark:bg-slate-900/80 card-hover-lift">
             <div>
               <span className="inline-block rounded-full border border-slate-200 bg-slate-100 px-3 py-0.5 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 mb-2">
                 Contact Details
@@ -238,7 +239,7 @@ export default function Contact() {
           </div>
 
           {/* Right Form Column */}
-          <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs dark:border-white/10 dark:bg-slate-900/80">
+          <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs dark:border-white/10 dark:bg-slate-900/80 card-hover-lift">
             <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
               Send a Direct Message
             </h3>
