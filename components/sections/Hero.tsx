@@ -208,7 +208,7 @@ export default function Hero() {
                   </div>
                   <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    <span>Verified Engineer</span>
+                    <span>Full Stack Developer</span>
                   </div>
                 </div>
               </div>

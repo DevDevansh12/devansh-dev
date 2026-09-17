@@ -158,7 +158,7 @@ export default function AboutPage() {
               About Devansh Variya
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-400">
-              Engineering Thoughtful Web & AI Solutions — passionate Full Stack Developer driven by performance, clean architecture, and practical AI integrations.
+              Engineering Thoughtful Web & AI Solutions passionate Full Stack Developer driven by performance, clean architecture, and practical AI integrations.
             </p>
           </div>
 
@@ -169,7 +169,7 @@ export default function AboutPage() {
               <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-xs dark:border-white/10 dark:bg-slate-900/80">
                 <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-950">
                   <Image
-                    src="/devansh-profile.jpg"
+                    src="/devansh-profile.png"
                     alt="Devansh Variya"
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -183,7 +183,7 @@ export default function AboutPage() {
                     Devansh Variya
                   </h3>
                   <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">
-                    Full Stack Developer & AI Integrator
+                    AI-Driven Full Stack Developer
                   </p>
                   <p className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                     <FaMapMarkerAlt className="text-emerald-600 dark:text-emerald-400" />
