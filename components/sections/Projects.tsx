@@ -122,7 +122,7 @@ export default function Projects() {
                     rel="noreferrer"
                     data-external="true"
                     onClick={(e) => e.stopPropagation()}
-                    className="relative z-20 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-2xs transition-all duration-150 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-950 active:scale-[0.98] dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:text-white"
+                    className="relative z-20 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-2xs transition-all duration-150 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 active:scale-[0.98] dark:border-white/15 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:border-white/30 dark:hover:bg-slate-700 dark:hover:text-white"
                   >
                     <span>Live Site</span>
                     <FaExternalLinkAlt className="text-[10px]" />
@@ -137,7 +137,7 @@ export default function Projects() {
         <div className="mt-12 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-xs font-semibold text-slate-800 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-xs font-semibold text-slate-800 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20 dark:hover:bg-white/10"
           >
             <span>View All Projects in Dedicated Gallery</span>
             <FaArrowRight className="text-[11px] text-slate-400" />

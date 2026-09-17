@@ -84,7 +84,7 @@ const breadcrumbJsonLd = {
 
 const stats = [
   { value: "4+", label: "Production Apps", sublabel: "Shipped & Live" },
-  { value: "30%", label: "Workload Reduced", sublabel: "Via OpenAI & Gemini AI" },
+  { value: "5+", label: "Client Projects", sublabel: "Delivered & Deployed" },
   { value: "7.6", label: "GPA B.Tech IT", sublabel: "Parul University" },
   { value: "100%", label: "Code Integrity", sublabel: "Type-safe & Responsive" },
 ];

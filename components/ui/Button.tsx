@@ -27,7 +27,7 @@ export default function Button({
     outline:
       "border border-slate-300 dark:border-white/20 text-slate-800 dark:text-white font-semibold hover:border-cyan-400 hover:bg-cyan-500/5 active:scale-[0.98]",
     glass:
-      "border border-slate-200/80 bg-white text-slate-800 shadow-sm hover:border-cyan-400/40 hover:bg-slate-50 dark:border-white/10 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-white/20 active:scale-[0.98]",
+      "border border-slate-200/80 bg-white text-slate-800 shadow-sm hover:border-cyan-400/40 hover:bg-slate-50 dark:border-white/10 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-slate-700 dark:hover:text-white active:scale-[0.98]",
   }[variant];
 
   return (

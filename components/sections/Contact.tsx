@@ -207,7 +207,7 @@ export default function Contact() {
                       href="https://github.com/devdevansh12"
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-2xs transition-all hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20"
+                      className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-2xs transition-all hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-white/10"
                     >
                       <FaGithub className="text-sm" />
                       <span>GitHub</span>
@@ -216,7 +216,7 @@ export default function Contact() {
                       href="https://www.linkedin.com/in/devansh-variya/"
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-2xs transition-all hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20"
+                      className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 shadow-2xs transition-all hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-white/10"
                     >
                       <FaLinkedin className="text-sm text-[#0a66c2]" />
                       <span>LinkedIn</span>
@@ -262,7 +262,7 @@ export default function Contact() {
                       setStatus("idle");
                     }}
                     placeholder="e.g. Alex Smith"
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder-slate-500 dark:focus:border-white dark:focus:ring-white"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-slate-950/60 dark:text-white dark:placeholder-slate-500 dark:focus:bg-slate-950 dark:focus:border-emerald-400 dark:focus:ring-1 dark:focus:ring-emerald-400/20"
                   />
                 </div>
 
@@ -279,7 +279,7 @@ export default function Contact() {
                       setStatus("idle");
                     }}
                     placeholder="alex@example.com"
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder-slate-500 dark:focus:border-white dark:focus:ring-white"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-slate-950/60 dark:text-white dark:placeholder-slate-500 dark:focus:bg-slate-950 dark:focus:border-emerald-400 dark:focus:ring-1 dark:focus:ring-emerald-400/20"
                   />
                 </div>
               </div>
@@ -303,7 +303,7 @@ export default function Contact() {
                     setStatus("idle");
                   }}
                   placeholder="Describe your project, timeline, or question..."
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder-slate-500 dark:focus:border-white dark:focus:ring-white"
+                  className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-150 focus:border-slate-900 focus:bg-white focus:ring-1 focus:ring-slate-900 dark:border-white/15 dark:bg-slate-950/60 dark:text-white dark:placeholder-slate-500 dark:focus:bg-slate-950 dark:focus:border-emerald-400 dark:focus:ring-1 dark:focus:ring-emerald-400/20"
                 />
               </div>
 

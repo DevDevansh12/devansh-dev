@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark ([data-theme="dark"] &, &[data-theme="dark"], .dark &, &.dark);
 
 :root {
   --background: #fafafa;
@@ -12,7 +12,12 @@
   --accent-2: #00babc;
 }
 
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
 html[data-theme="dark"] {
+  color-scheme: dark;
   --background: #090a0f;
   --foreground: #f8fafc;
   --card-bg: #11131b;
@@ -20,6 +25,25 @@ html[data-theme="dark"] {
   --muted: #94a3b8;
   --accent-1: #2dd4bf;
   --accent-2: #22d3ee;
+}
+
+/* Chrome / Safari / Edge Autofill Fix for Dark Mode */
+html[data-theme="dark"] input:-webkit-autofill,
+html[data-theme="dark"] input:-webkit-autofill:hover,
+html[data-theme="dark"] input:-webkit-autofill:focus,
+html[data-theme="dark"] textarea:-webkit-autofill,
+html[data-theme="dark"] textarea:-webkit-autofill:hover,
+html[data-theme="dark"] textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f8fafc !important;
+  -webkit-box-shadow: 0 0 0px 1000px #0f172a inset !important;
+  box-shadow: 0 0 0px 1000px #0f172a inset !important;
+  caret-color: #f8fafc !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Fallback protection for buttons with hover:bg-slate-50 in dark mode */
+html[data-theme="dark"] .hover\:bg-slate-50:hover {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {

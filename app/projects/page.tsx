@@ -48,26 +48,26 @@ const collectionPageJsonLd = {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Internship Portal",
-        "url": "https://devanshvariya.com/projects/internship-portal",
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
         "name": "TheLocator",
         "url": "https://devanshvariya.com/projects/thelocator",
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 2,
         "name": "Vedoo Architect",
         "url": "https://devanshvariya.com/projects/vedoo-architect",
       },
       {
         "@type": "ListItem",
+        "position": 3,
+        "name": "Billing & Invoice Management System",
+        "url": "https://devanshvariya.com/projects/invoice-management-portal",
+      },
+      {
+        "@type": "ListItem",
         "position": 4,
-        "name": "Smart Billing Desk",
-        "url": "https://devanshvariya.com/projects/smart-billing-desk",
+        "name": "Corporate Consulting Website",
+        "url": "https://devanshvariya.com/projects/corporate-consulting-website",
       },
     ],
   },
@@ -121,7 +121,7 @@ export default function ProjectsPage() {
             <div className="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-400">
               <div className="flex items-center gap-2">
                 <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
-                <span>4 Production Systems Shipped</span>
+                <span>5 Production Systems Shipped</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="flex h-2 w-2 rounded-full bg-cyan-500" />

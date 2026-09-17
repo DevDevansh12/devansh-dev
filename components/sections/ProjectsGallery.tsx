@@ -159,7 +159,7 @@ export default function ProjectsGallery({ initialProjects }: ProjectsGalleryProp
                   rel="noreferrer"
                   data-external="true"
                   onClick={(e) => e.stopPropagation()}
-                  className="relative z-20 inline-flex w-full sm:w-auto items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-2xs transition-all duration-150 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-950 active:scale-[0.98] dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:text-white"
+                  className="relative z-20 inline-flex w-full sm:w-auto items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-2xs transition-all duration-150 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 active:scale-[0.98] dark:border-white/15 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:border-white/30 dark:hover:bg-slate-700 dark:hover:text-white"
                 >
                   <span>Live Site</span>
                   <FaExternalLinkAlt className="text-[10px]" />
