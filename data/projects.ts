@@ -30,7 +30,7 @@ export const projects: Project[] = [
     subtitle: "Professional Business Invoice Generator",
     category: "Full Stack / AI Web Application",
     liveUrl: "https://invoice-desk-dev.vercel.app/",
-    image: "/projects/invoice.webp",
+    image: "/projects/invoicedesk.webp",
     highlight: "OpenAI Integrated",
     tags: ["React.js", "OpenAI API", "Redux", "Razorpay", "Supabase", "Node.js"],
     shortDescription:
