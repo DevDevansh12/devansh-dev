@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaCopy,
   FaCheck,
   FaTwitter,
   FaLinkedin,
   FaShareAlt,
+  FaListUl,
+  FaArrowUp,
+  FaChevronDown,
 } from "react-icons/fa";
 
 export function BlogCodeBlock({
@@ -165,6 +168,171 @@ export function BlogShareButtons({
           </>
         )}
       </button>
+    </div>
+  );
+}
+
+export function BlogTableOfContents({
+  items,
+}: {
+  items: { id: string; title: string }[];
+}) {
+  const [activeId, setActiveId] = useState<string>("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-100px 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    items.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [items]);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveId(id);
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (!items || items.length === 0) return null;
+
+  return (
+    <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-5 shadow-xs backdrop-blur-md dark:border-white/10 dark:bg-slate-900/70">
+      {/* Header */}
+      <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10 mb-3.5">
+        <div className="flex items-center gap-2">
+          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400">
+            <FaListUl className="text-xs" />
+          </span>
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+            Table of Contents
+          </span>
+        </div>
+        <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500">
+          {items.length} items
+        </span>
+      </div>
+
+      {/* Navigation List */}
+      <nav className="max-h-[calc(100vh-14rem)] overflow-y-auto pr-1 space-y-1 text-xs">
+        {items.map((item) => {
+          const isActive = activeId === item.id;
+          return (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => scrollToSection(e, item.id)}
+              className={`group flex items-start gap-2 py-1.5 px-2.5 rounded-lg text-xs leading-relaxed transition-all duration-150 ${
+                isActive
+                  ? "bg-emerald-500/10 font-bold text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400 border-l-2 border-emerald-500"
+                  : "text-slate-600 hover:bg-slate-100/70 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200 font-medium"
+              }`}
+            >
+              <span className="truncate">{item.title}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      {/* Quick Actions */}
+      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-400 transition-colors cursor-pointer"
+        >
+          <FaArrowUp className="text-[9px]" />
+          <span>Back to Top</span>
+        </button>
+        <span className="text-[10px] text-slate-400 dark:text-slate-500">
+          Quick Nav
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function MobileTableOfContents({
+  items,
+}: {
+  items: { id: string; title: string }[];
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsOpen(false);
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
+
+  if (!items || items.length === 0) return null;
+
+  return (
+    <div className="mb-8 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-xs backdrop-blur-md dark:border-white/10 dark:bg-slate-900/70">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between text-left cursor-pointer"
+        aria-expanded={isOpen}
+      >
+        <div className="flex items-center gap-2">
+          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400">
+            <FaListUl className="text-xs" />
+          </span>
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+            Table of Contents
+          </span>
+          <span className="text-[11px] text-slate-400 dark:text-slate-500">
+            ({items.length} sections)
+          </span>
+        </div>
+        <FaChevronDown
+          className={`text-xs text-slate-400 transition-transform duration-200 ${
+            isOpen ? "rotate-180 text-emerald-500" : ""
+          }`}
+        />
+      </button>
+
+      {isOpen && (
+        <nav className="mt-3 pt-3 border-t border-slate-100 dark:border-white/10 max-h-72 overflow-y-auto pr-1 space-y-1">
+          {items.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => scrollToSection(e, item.id)}
+              className="block py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100/70 hover:text-emerald-600 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-emerald-400 transition-colors"
+            >
+              {item.title}
+            </a>
+          ))}
+        </nav>
+      )}
     </div>
   );
 }
