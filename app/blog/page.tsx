@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Explore technical articles and architecture guides on Next.js, React, AI agents, real-time state, and cloud security by Devansh Variya.",
   alternates: {
-    canonical: "https://devanshvariya.com/blog",
+    canonical: "https://www.devanshvariya.com/blog",
   },
   openGraph: {
     type: "website",

@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   description:
     "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
   alternates: {
-    canonical: "https://devanshvariya.com/",
+    canonical: "https://www.devanshvariya.com/",
   },
   openGraph: {
     type: "website",
-    url: "https://devanshvariya.com/",
+    url: "https://www.devanshvariya.com/",
     title: "Devansh Variya | Full Stack Developer & Software Engineer",
     description:
       "Devansh Variya is a Full Stack Developer skilled in React, Node.js, JavaScript and TypeScript. Explore his projects, experience and web development work.",
@@ -75,9 +75,9 @@ import dynamic from "next/dynamic";
 
 // Below-fold sections — split into separate JS chunks, fetched after Hero paints
 const Experience = dynamic(() => import("@/components/sections/Experience"));
-const Skills     = dynamic(() => import("@/components/sections/Skills"));
-const Projects   = dynamic(() => import("@/components/sections/Projects"));
-const Contact    = dynamic(() => import("@/components/sections/Contact"));
+const Skills = dynamic(() => import("@/components/sections/Skills"));
+const Projects = dynamic(() => import("@/components/sections/Projects"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 function GradientDivider() {
   return (

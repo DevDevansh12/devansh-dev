@@ -7,6 +7,7 @@ import {
   FaArrowUp,
   FaGithub,
   FaLinkedin,
+  FaInstagram,
   FaWhatsapp,
   FaEnvelope,
   FaCopy,
@@ -244,6 +245,17 @@ export default function Footer() {
                 >
                   <FaLinkedin className="text-sm text-[#0a66c2]" />
                   <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/devdevansh12"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-slate-600 hover:text-[#e4405f] dark:text-slate-400 dark:hover:text-[#e4405f] transition-colors"
+                >
+                  <FaInstagram className="text-sm text-[#e4405f]" />
+                  <span>Instagram</span>
                 </a>
               </li>
               <li>

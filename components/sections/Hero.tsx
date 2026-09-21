@@ -66,7 +66,6 @@ export default function Hero() {
             {/* Status Pill */}
             <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50/80 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400" />
               </span>
               <span>Available for freelance &amp; full-time roles</span>
@@ -187,7 +186,7 @@ export default function Hero() {
               <div className="relative rounded-[26px] p-[1.5px] overflow-hidden bg-slate-200/80 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 dark:bg-white/10 dark:shadow-2xl dark:shadow-black/70">
                 {/* Traveling glowing laser beam */}
                 <div
-                  className="border-beam pointer-events-none absolute -inset-[150%] opacity-100"
+                  className="border-beam pointer-events-none absolute -inset-[100%] opacity-100"
                   style={{
                     background:
                       "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 65deg, #00bc87 90deg, #00babc 105deg, #6366f1 120deg, transparent 145deg, transparent 360deg)",
@@ -198,7 +197,7 @@ export default function Hero() {
                 <div className="relative z-10 rounded-[24px] bg-white p-3 dark:bg-slate-900/95">
                   <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
                     <Image
-                      src="/devansh-profile.png"
+                      src="/devansh-profile.webp"
                       alt="Devansh Variya"
                       fill
                       priority

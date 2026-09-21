@@ -11,6 +11,10 @@ import {
   FaCheckCircle,
   FaArrowRight,
   FaBookOpen,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 import { blogs, getBlogBySlug, getRelatedBlogs } from "@/data/blogs";
 import Container from "@/components/ui/Container";
@@ -45,7 +49,7 @@ export async function generateMetadata({
 
   const title = blog.metaTitle || `${blog.title} | Devansh Variya`;
   const description = blog.metaDescription || blog.excerpt;
-  const canonicalUrl = `https://devanshvariya.com/blog/${blog.slug}`;
+  const canonicalUrl = blog.canonicalUrl || `https://www.devanshvariya.com/blog/${blog.slug}`;
   const imageUrl = blog.coverImage.startsWith("/")
     ? `https://devanshvariya.com${blog.coverImage}`
     : blog.coverImage;
@@ -84,8 +88,38 @@ export async function generateMetadata({
 }
 
 function renderFormattedText(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*|`.*?`)/g);
+  const parts = text.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*|`.*?`)/g);
   return parts.map((part, i) => {
+    if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
+      const match = part.match(/^\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        const [, label, url] = match;
+        const isExternal = url.startsWith("http://") || url.startsWith("https://");
+        if (isExternal) {
+          return (
+            <a
+              key={i}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-emerald-600 underline decoration-emerald-500/40 underline-offset-2 transition-colors hover:text-emerald-500 hover:decoration-emerald-500 dark:text-emerald-400 dark:decoration-emerald-400/40 dark:hover:text-emerald-300"
+            >
+              <span>{label}</span>
+              <FaExternalLinkAlt className="text-[9px] opacity-70" />
+            </a>
+          );
+        }
+        return (
+          <Link
+            key={i}
+            href={url}
+            className="font-semibold text-emerald-600 underline decoration-emerald-500/40 underline-offset-2 transition-colors hover:text-emerald-500 hover:decoration-emerald-500 dark:text-emerald-400 dark:decoration-emerald-400/40 dark:hover:text-emerald-300"
+          >
+            {label}
+          </Link>
+        );
+      }
+    }
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
         <strong key={i} className="font-bold text-slate-900 dark:text-white">
@@ -156,10 +190,24 @@ export default async function BlogDetailPage({
     },
     datePublished: blog.publishedTime,
     dateModified: blog.dateModified || blog.publishedTime,
-    articleSection: "Full Stack Development",
+    articleSection: blog.category,
     keywords: blog.tags,
     inLanguage: "en",
   };
+
+  const faqJsonLd = blog.faq && blog.faq.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://devanshvariya.com/blog/${blog.slug}#faq`,
+    mainEntity: blog.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  } : null;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -196,103 +244,90 @@ export default async function BlogDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       <article className="pt-28 pb-20 sm:pt-36 sm:pb-28">
-        <Container>
-          <div className="mx-auto max-w-4xl">
-            {/* ──── Back to Blog Link ──── */}
-            <div className="mb-8">
-              <Link
-                href="/blog"
-                className="group inline-flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white/80 px-4 py-2 text-xs font-semibold text-slate-700 backdrop-blur-md transition-all duration-200 hover:border-emerald-500/40 hover:bg-slate-50 hover:text-emerald-600 dark:border-white/10 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-emerald-500/30 dark:hover:text-emerald-400"
-              >
-                <FaArrowLeft className="text-[10px] transition-transform duration-200 group-hover:-translate-x-1" />
-                <span>Back to all articles</span>
-              </Link>
+        <Container className="max-w-5xl">
+          {/* ──── Back to Blog Link ──── */}
+          <div className="mb-8">
+            <Link
+              href="/blog"
+              className="group inline-flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white/80 px-4 py-2 text-xs font-semibold text-slate-700 backdrop-blur-md transition-all duration-200 hover:border-emerald-500/40 hover:bg-slate-50 hover:text-emerald-600 dark:border-white/10 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-emerald-500/30 dark:hover:text-emerald-400"
+            >
+              <FaArrowLeft className="text-[10px] transition-transform duration-200 group-hover:-translate-x-1" />
+              <span>Back to all articles</span>
+            </Link>
+          </div>
+
+          {/* ──── Header Meta & Title ──── */}
+          <header className="space-y-5">
+            <div className="flex flex-wrap items-center gap-3 text-xs font-semibold">
+              <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-emerald-600 dark:text-emerald-400">
+                {blog.category}
+              </span>
+              <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                <FaCalendarAlt className="text-[11px]" />
+                {blog.date}
+              </span>
+              <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                <FaClock className="text-[11px]" />
+                {blog.readTime}
+              </span>
             </div>
 
-            {/* ──── Header Meta & Title ──── */}
-            <header className="space-y-6">
-              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold">
-                <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-emerald-600 dark:text-emerald-400">
-                  {blog.category}
-                </span>
-                <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                  <FaCalendarAlt className="text-[11px]" />
-                  {blog.date}
-                </span>
-                <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                  <FaClock className="text-[11px]" />
-                  {blog.readTime}
-                </span>
-              </div>
+            <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white leading-[1.15]">
+              {blog.title}
+            </h1>
 
-              <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-                {blog.title}
-              </h1>
+            <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300 max-w-3xl">
+              {blog.subtitle}
+            </p>
 
-              <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-                {blog.subtitle}
-              </p>
-
-              {/* ──── Author Bar & Share ──── */}
-              <div className="flex flex-col gap-4 border-y border-slate-200/80 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-emerald-500/40">
-                    <Image
-                      src={blog.author.avatar}
-                      alt={blog.author.name}
-                      fill
-                      priority
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900 dark:text-white">
-                      {blog.author.name}
-                    </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      {blog.author.role} • Cloud & AI Systems
-                    </p>
-                  </div>
+            {/* ──── Author Bar & Share ──── */}
+            <div className="flex flex-col gap-4 border-y border-slate-200/80 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-white/10">
+              <div className="flex items-center gap-3">
+                <div className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-emerald-500/40">
+                  <Image
+                    src={blog.author.avatar}
+                    alt={blog.author.name}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
                 </div>
-
-                <BlogShareButtons title={blog.title} slug={blog.slug} />
-              </div>
-            </header>
-
-            {/* ──── Hero Cover Image ──── */}
-            <div className="relative my-8 aspect-[16/9] w-full overflow-hidden rounded-3xl border border-slate-200/80 shadow-2xl dark:border-white/10 dark:shadow-black/40">
-              <Image
-                src={blog.coverImage}
-                alt={blog.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 900px"
-                className="object-cover"
-              />
-            </div>
-
-            {/* ──── Executive Summary Callout ──── */}
-            <div className="my-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.04] p-6 backdrop-blur-sm sm:p-7 dark:bg-emerald-500/[0.06]">
-              <div className="flex items-start gap-3.5">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                  <FaBookOpen className="text-xs" />
-                </span>
                 <div>
-                  <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                    Executive Overview
-                  </h2>
-                  <p className="mt-1.5 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-200 font-medium">
-                    {blog.summary}
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">
+                    {blog.author.name}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {blog.author.role} • Cloud & AI Systems
                   </p>
                 </div>
               </div>
+
+              <BlogShareButtons title={blog.title} slug={blog.slug} />
             </div>
+          </header>
+
+          {/* ──── Hero Cover Image ──── */}
+          <div className="relative my-8 aspect-[16/9] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xl dark:border-white/10 dark:shadow-black/40">
+            <Image
+              src={blog.coverImage}
+              alt={blog.title}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+            />
           </div>
 
           {/* ──── Main Content & Side Table of Contents ──── */}
-          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-12 items-start">
+          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-12 items-start">
             {/* Mobile Collapsible TOC */}
             {blog.tableOfContents.length > 0 && (
               <div className="lg:hidden col-span-1">
@@ -302,6 +337,23 @@ export default async function BlogDetailPage({
 
             {/* Left Column: Article Body Content */}
             <div className="lg:col-span-8 min-w-0">
+              {/* ──── Executive Summary Callout ──── */}
+              <div className="mb-10 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.04] p-6 backdrop-blur-sm sm:p-7 dark:bg-emerald-500/[0.06]">
+                <div className="flex items-start gap-3.5">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                    <FaBookOpen className="text-xs" />
+                  </span>
+                  <div>
+                    <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                      Executive Overview
+                    </h2>
+                    <p className="mt-1.5 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-200 font-medium">
+                      {blog.summary}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-12">
                 {blog.sections.map((section) => (
                   <section
@@ -340,12 +392,13 @@ export default async function BlogDetailPage({
                           }
 
                           if (block.type === "quote") {
+                            const trimmed = block.text.trim().replace(/^["“]|["”]$/g, "").trim();
                             return (
                               <blockquote
                                 key={bIdx}
-                                className="my-3 rounded-xl border-l-4 border-emerald-500 bg-emerald-500/[0.05] p-4 text-sm font-medium italic text-slate-700 sm:text-base dark:bg-emerald-500/[0.08] dark:text-slate-200"
+                                className="my-3.5 rounded-xl border-l-4 border-emerald-500 bg-emerald-500/[0.05] p-4 text-sm font-medium italic text-slate-700 sm:text-base dark:bg-emerald-500/[0.08] dark:text-slate-200"
                               >
-                                &ldquo;{block.text}&rdquo;
+                                &ldquo;{renderFormattedText(trimmed)}&rdquo;
                               </blockquote>
                             );
                           }
@@ -391,7 +444,7 @@ export default async function BlogDetailPage({
                                         {block.title}:{" "}
                                       </strong>
                                     )}
-                                    {block.text}
+                                    {renderFormattedText(block.text)}
                                   </div>
                                 </div>
                               </div>
@@ -479,6 +532,33 @@ export default async function BlogDetailPage({
                 ))}
               </div>
 
+              {/* ──── Frequently Asked Questions ──── */}
+              {blog.faq && blog.faq.length > 0 && (
+                <div className="mt-14 pt-10 border-t border-slate-200/80 dark:border-white/10 space-y-6">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                      Frequently Asked Questions
+                    </h2>
+                  </div>
+                  <div className="space-y-4">
+                    {blog.faq.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-2xl border border-slate-200/80 bg-white/80 p-5 shadow-xs transition-all duration-200 hover:border-emerald-500/30 dark:border-white/10 dark:bg-slate-900/60"
+                      >
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2">
+                          {item.question}
+                        </h3>
+                        <div className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                          {renderFormattedText(item.answer)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* ──── Tags & Share Footer ──── */}
               <div className="mt-12 pt-8 border-t border-slate-200/80 dark:border-white/10 space-y-6">
                 <div className="flex flex-wrap items-center gap-2">
@@ -507,7 +587,7 @@ export default async function BlogDetailPage({
                         className="object-cover"
                       />
                     </div>
-                    <div className="space-y-1.5 flex-1">
+                    <div className="space-y-2 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <h3 className="text-base font-bold text-slate-900 dark:text-white">
                           Written by {blog.author.name}
@@ -522,6 +602,36 @@ export default async function BlogDetailPage({
                       <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         Devansh is a Full Stack Developer focused on building modern web applications using React, Next.js, TypeScript, Node.js and AI technologies. He enjoys working on SaaS products, AI-powered applications, dashboards, APIs and scalable web experiences.
                       </p>
+                      <div className="flex flex-wrap items-center gap-3 pt-1 text-xs">
+                        <span className="font-semibold text-slate-500 dark:text-slate-400">Connect:</span>
+                        <a
+                          href="https://github.com/devdevansh12"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors"
+                        >
+                          <FaGithub className="text-sm" />
+                          <span>GitHub</span>
+                        </a>
+                        <a
+                          href="https://www.linkedin.com/in/devansh-variya/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-[#0a66c2] dark:text-slate-300 dark:hover:text-[#0a66c2] transition-colors"
+                        >
+                          <FaLinkedin className="text-sm text-[#0a66c2]" />
+                          <span>LinkedIn</span>
+                        </a>
+                        <a
+                          href="https://www.instagram.com/devdevansh12"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-[#e4405f] dark:text-slate-300 dark:hover:text-[#e4405f] transition-colors"
+                        >
+                          <FaInstagram className="text-sm text-[#e4405f]" />
+                          <span>Instagram</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

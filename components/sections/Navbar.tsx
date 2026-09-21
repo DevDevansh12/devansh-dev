@@ -154,7 +154,6 @@ export default function Navbar() {
               }`}
             >
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
               </span>
               <span>Let&apos;s Connect</span>
@@ -269,7 +268,6 @@ export default function Navbar() {
                 className="flex w-full items-center justify-center gap-2.5 rounded-xl py-3 text-center text-sm font-bold text-white shadow-md nav-cta-gradient"
               >
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
                 </span>
                 <span>Let&apos;s Connect</span>

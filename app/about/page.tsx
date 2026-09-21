@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "Learn about Devansh Variya, a Full Stack Developer building modern web apps with React, Next.js, Node.js, JavaScript, TypeScript, and AI technologies.",
   alternates: {
-    canonical: "https://devanshvariya.com/about",
+    canonical: "https://www.devanshvariya.com/about",
   },
   openGraph: {
     type: "profile",

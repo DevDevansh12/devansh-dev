@@ -45,9 +45,475 @@ export interface BlogPost {
   summary: string;
   tableOfContents: { id: string; title: string }[];
   sections: BlogSection[];
+  canonicalUrl?: string;
+  faq?: { question: string; answer: string }[];
 }
 
 export const blogs: BlogPost[] = [
+  {
+    slug: "ai-coding-agents-2026",
+    title: "AI Coding Agents in 2026: How Agentic AI Is Changing Software Development",
+    headline: "AI Coding Agents in 2026: How Agentic AI Is Changing Software Development",
+    metaTitle: "AI Coding Agents 2026: AI Development | Devansh Variya",
+    metaDescription: "Discover how AI coding agents, agentic AI, MCP and AI engineering are changing software development in 2026 and what developers should learn next.",
+    subtitle: "Artificial intelligence is changing software development at a much faster pace than many developers expected. The shift toward agentic software development is redefining how developers build, test, and ship code.",
+    excerpt: "Discover how AI coding agents, agentic AI, MCP and AI engineering are changing software development in 2026 and what developers should learn next.",
+    date: "September 22, 2026",
+    publishedTime: "2026-09-22",
+    dateModified: "2026-09-22",
+    readTime: "12 min read",
+    category: "AI & Cloud",
+    coverImage: "/images/blogs/blog-image.webp",
+    featured: true,
+    tags: [
+      "AI",
+      "Artificial Intelligence",
+      "AI Agents",
+      "Agentic AI",
+      "Software Development",
+      "AI Engineering",
+      "Developer Tools",
+      "MCP",
+      "Web Development",
+    ],
+    author: {
+      name: "Devansh Variya",
+      role: "Full Stack Developer",
+      avatar: "/devansh-profile.png",
+    },
+    summary: "AI coding agents are moving beyond autocomplete and code suggestions toward tools that can understand codebases, plan tasks, modify multiple files, run tests and iterate on implementations. This article explores how agentic software development, MCP, and AI engineering are reshaping the developer's role in 2026 and what skills matter most going forward.",
+    tableOfContents: [
+      { id: "what-are-ai-coding-agents", title: "What Are AI Coding Agents?" },
+      { id: "adoption-is-growing", title: "AI Coding Agent Adoption Is Growing" },
+      { id: "from-assistance-to-agentic", title: "From AI Assistance to Agentic Development" },
+      { id: "why-this-matters-fullstack", title: "Why This Matters for Full Stack Developers" },
+      { id: "mcp-next-generation", title: "MCP and the Next Generation of AI Agents" },
+      { id: "developer-role-changing", title: "The Developer's Role Is Changing" },
+      { id: "agents-not-perfect", title: "AI Coding Agents Are Not Perfect" },
+      { id: "ai-engineering-skill-set", title: "AI Engineering Is Becoming a New Skill Set" },
+      { id: "what-should-developers-learn", title: "What Should Developers Learn in 2026?" },
+      { id: "what-comes-next", title: "What Comes Next?" },
+      { id: "final-thoughts", title: "Final Thoughts" },
+    ],
+    sections: [
+      {
+        id: "what-are-ai-coding-agents",
+        title: "What Are AI Coding Agents?",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Traditional AI coding assistants work alongside developers. A developer writes a function, asks a question or describes what they want, and the AI generates a response or code suggestion.",
+          },
+          {
+            type: "paragraph",
+            text: "AI coding agents take this concept further.",
+          },
+          {
+            type: "paragraph",
+            text: "Instead of asking:",
+          },
+          {
+            type: "quote",
+            text: "Write this function.",
+          },
+          {
+            type: "paragraph",
+            text: "A developer can provide a higher-level objective such as:",
+          },
+          {
+            type: "quote",
+            text: "Add authentication to this application, update the database model, create the required API endpoints and add tests.",
+          },
+          {
+            type: "paragraph",
+            text: "An AI coding agent can then inspect the repository, identify relevant files, create an implementation plan, modify code, run tests and investigate errors.",
+          },
+          {
+            type: "paragraph",
+            text: "Tools such as [OpenAI Codex](https://openai.com/codex/), [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://github.com/features/copilot) and [Cursor](https://www.cursor.com/) are examples of the rapidly evolving AI developer-tool ecosystem.",
+          },
+        ],
+      },
+      {
+        id: "adoption-is-growing",
+        title: "AI Coding Agent Adoption Is Growing",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "AI coding agents are no longer limited to experiments by early adopters.",
+          },
+          {
+            type: "paragraph",
+            text: "JetBrains' 2026 Developer Ecosystem Survey, based on more than 15,000 professional developers worldwide, reported that **90% of professional developers** surveyed were using AI coding agents at work at least weekly, while **68% reported daily use** during May–July 2026.",
+          },
+          {
+            type: "paragraph",
+            text: "The same research found significant growth in the adoption of tools such as [Claude Code](https://www.anthropic.com/claude-code) and [OpenAI Codex](https://openai.com/codex/) during 2026.",
+          },
+          {
+            type: "paragraph",
+            text: "Stack Overflow's 2026 research also found that AI agent usage had increased to **59% among respondents** in its latest pulse survey. However, most developers were still keeping humans involved in the process, particularly because accuracy and security remain concerns.",
+          },
+          {
+            type: "callout",
+            title: "Key Insight",
+            text: "The industry is adopting AI agents, but it is not simply handing over software development completely to AI. Human oversight remains the norm.",
+          },
+        ],
+      },
+      {
+        id: "from-assistance-to-agentic",
+        title: "From AI Assistance to Agentic Development",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Traditional software development follows a linear flow: Requirement → Developer → Write Code → Test → Debug → Deploy.",
+          },
+          {
+            type: "paragraph",
+            text: "AI-assisted development modifies this to: Requirement → Developer + AI → Generate/Modify Code → Developer Review → Testing → Deployment.",
+          },
+          {
+            type: "paragraph",
+            text: "**Agentic development** goes one step further:",
+          },
+          {
+            type: "list",
+            items: [
+              "Developer defines objective and constraints",
+              "AI Agent plans the implementation",
+              "AI Agent writes and modifies code across multiple files",
+              "AI Agent runs tests and investigates errors",
+              "Developer reviews the output",
+              "Deployment",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "The major difference is **autonomy**. The developer is no longer responsible for manually executing every small development task. Instead, the developer increasingly becomes responsible for defining objectives, constraints and acceptance criteria, then reviewing what the agent produces.",
+          },
+          {
+            type: "paragraph",
+            text: "Anthropic's 2026 Agentic Coding Trends Report describes this broader shift as software development moving toward orchestrating agents that write code, while emphasizing the continuing importance of human judgment, quality and security.",
+          },
+        ],
+      },
+      {
+        id: "why-this-matters-fullstack",
+        title: "Why This Matters for Full Stack Developers",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "This trend is particularly important for full stack developers building [modern web applications and SaaS projects](/projects). Modern applications often involve several layers: Frontend (React / Next.js), API (Node.js), Authentication, Database, External APIs, Payments, and Cloud Infrastructure.",
+          },
+          {
+            type: "paragraph",
+            text: "An AI coding agent can potentially help across multiple layers of this system. For example, a developer could ask an agent to:",
+          },
+          {
+            type: "list",
+            items: [
+              "Create a React component",
+              "Build a REST API endpoint",
+              "Create database models",
+              "Add validation and error handling",
+              "Implement authentication",
+              "Generate comprehensive tests",
+              "Update documentation",
+              "Fix a bug across multiple files",
+              "Refactor existing code",
+              "Prepare deployment configuration",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "This doesn't eliminate the need for full stack knowledge. In fact, **understanding the entire system becomes even more important**. A developer needs to know whether the AI's implementation actually fits the architecture.",
+          },
+        ],
+      },
+      {
+        id: "mcp-next-generation",
+        title: "MCP and the Next Generation of AI Agents",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Another technology gaining attention in the AI developer ecosystem is **[Model Context Protocol (MCP)](https://modelcontextprotocol.io/)**.",
+          },
+          {
+            type: "paragraph",
+            text: "MCP provides a standardized way for AI applications to connect with external tools, data and services. Conceptually: AI Agent → MCP → Tools / APIs / Data → Real-world actions.",
+          },
+          {
+            type: "paragraph",
+            text: "This makes AI agents more useful because they can potentially interact with systems beyond a conversation window. For developers, this creates opportunities to build applications where AI can interact with:",
+          },
+          {
+            type: "list",
+            items: [
+              "Databases and data stores",
+              "APIs and microservices",
+              "[GitHub](https://github.com) repositories and version control",
+              "Documentation and knowledge bases",
+              "Internal business tools",
+              "Cloud services and infrastructure",
+              "Development environments like [Cursor](https://www.cursor.com/)",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Security Note",
+            text: "Giving an AI system access to real tools also makes permissions, security and monitoring increasingly important. Always implement proper access controls and audit logging.",
+          },
+        ],
+      },
+      {
+        id: "developer-role-changing",
+        title: "The Developer's Role Is Changing",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "One of the biggest misconceptions about AI coding agents is that developers will simply become unnecessary. A more realistic change is that the developer's responsibilities are shifting.",
+          },
+          {
+            type: "paragraph",
+            text: "Developers may spend less time manually writing repetitive boilerplate and more time on:",
+          },
+          {
+            type: "list",
+            items: [
+              "**Architecture** How should the application be structured?",
+              "**Problem Solving** What problem are we actually trying to solve?",
+              "**Code Review** Is the generated implementation correct?",
+              "**Security** Could the implementation expose sensitive data or create vulnerabilities?",
+              "**Testing** Does it work under real-world conditions?",
+              "**Performance** Will the solution remain efficient as usage grows?",
+              "**Product Thinking** Are we solving the right problem?",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "AI can accelerate implementation. It doesn't automatically provide good engineering judgment.",
+          },
+        ],
+      },
+      {
+        id: "agents-not-perfect",
+        title: "AI Coding Agents Are Not Perfect",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "AI-generated code can be impressive, but it can also be wrong. An agent may:",
+          },
+          {
+            type: "list",
+            items: [
+              "Misunderstand requirements",
+              "Introduce security vulnerabilities",
+              "Create inefficient database queries",
+              "Break existing functionality",
+              "Miss edge cases",
+              "Add unnecessary dependencies",
+              "Produce code that is difficult to maintain",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "This is why **human-in-the-loop development** remains important. A practical workflow looks like:",
+          },
+          {
+            type: "list",
+            items: [
+              "AI generates initial implementation",
+              "AI runs automated tests",
+              "Developer reviews the code",
+              "Automated security checks run",
+              "Human approval required",
+              "Deployment to production",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Stack Overflow's 2026 research found that **63% of respondents rarely or never allowed agents to run completely on autopilot**, illustrating how common human oversight remains in current workflows.",
+          },
+        ],
+      },
+      {
+        id: "ai-engineering-skill-set",
+        title: "AI Engineering Is Becoming a New Skill Set",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "As AI becomes part of software products and development workflows, another discipline is becoming increasingly important: **AI Engineering**.",
+          },
+          {
+            type: "paragraph",
+            text: "AI engineering combines traditional software development with technologies such as:",
+          },
+          {
+            type: "list",
+            items: [
+              "Large language models and LLM APIs",
+              "AI agents and agent orchestration",
+              "RAG (Retrieval-Augmented Generation)",
+              "Tool calling and function calling",
+              "Structured outputs",
+              "MCP (Model Context Protocol)",
+              "AI evaluation and observability",
+              "AI security and guardrails",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "For developers, this means learning AI shouldn't mean simply learning how to write better prompts. The bigger opportunity is learning how to **build reliable software systems around AI**.",
+          },
+        ],
+      },
+      {
+        id: "what-should-developers-learn",
+        title: "What Should Developers Learn in 2026?",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Developers shouldn't abandon software engineering fundamentals because of AI. Instead, combine them with AI capabilities.",
+          },
+          {
+            type: "subheading",
+            text: "Core Engineering Fundamentals",
+          },
+          {
+            type: "list",
+            items: [
+              "JavaScript / TypeScript",
+              "React and Next.js",
+              "Node.js and backend APIs",
+              "Databases (SQL and NoSQL)",
+              "Authentication and authorization",
+              "Git and [GitHub](https://github.com) version control",
+              "Testing strategies",
+              "Cloud deployment and infrastructure",
+            ],
+          },
+          {
+            type: "subheading",
+            text: "AI Development Skills",
+          },
+          {
+            type: "list",
+            items: [
+              "LLM APIs (OpenAI, Gemini, Claude)",
+              "AI agents and agentic workflows",
+              "RAG and knowledge retrieval",
+              "Function calling and tool use",
+              "Structured outputs and validation",
+              "[Model Context Protocol (MCP)](https://modelcontextprotocol.io/)",
+              "AI evaluation and testing",
+              "AI security and responsible AI",
+              "Agent orchestration and multi-agent systems",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Practical Advice",
+            text: "The goal isn't to use every new AI tool. The goal is to understand how to use AI effectively while maintaining software quality and reliability.",
+          },
+        ],
+      },
+      {
+        id: "what-comes-next",
+        title: "What Comes Next?",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The future of software development is unlikely to be simply AI vs Developers. A more practical direction is: **Developers + AI + Automation**.",
+          },
+          {
+            type: "paragraph",
+            text: "AI agents can increasingly handle implementation tasks, while developers remain responsible for architecture, requirements, quality, security and final decisions.",
+          },
+          {
+            type: "paragraph",
+            text: "OpenAI's recent analysis of agentic work also describes a shift from short AI interactions toward longer-horizon tasks where agents can operate for extended periods and use tools to work toward a defined outcome.",
+          },
+          {
+            type: "paragraph",
+            text: "That suggests software development may continue moving from individual code generation toward **delegated and orchestrated development workflows**.",
+          },
+        ],
+      },
+      {
+        id: "final-thoughts",
+        title: "Final Thoughts",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "AI coding agents are changing the way software is built. The developer of the future may not be the person who writes the most code manually.",
+          },
+          {
+            type: "paragraph",
+            text: "Instead, the valuable developer may be the person who can:",
+          },
+          {
+            type: "list",
+            items: [
+              "Understand the problem",
+              "Design the architecture",
+              "Give AI the right context",
+              "Review what AI produces",
+              "Test the result",
+              "Secure the system",
+              "Make the final engineering decisions",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Developers and creators are actively sharing practical agent experiments, MCP tool configurations, and full-stack setups across open source repositories on [GitHub](https://github.com) and tech communities on [Instagram](https://www.instagram.com). Staying engaged with these platforms and building with tools firsthand is key to thriving in the agentic era.",
+          },
+          {
+            type: "paragraph",
+            text: "AI can make software development faster. But good software still requires good engineering.",
+          },
+          {
+            type: "keyTakeaways",
+            items: [
+              "AI coding agents are moving from code suggestions to autonomous task execution across entire codebases",
+              "90% of professional developers are using AI agents weekly, but 63% rarely let them run on full autopilot",
+              "The developer's role is shifting toward architecture, code review, security and engineering judgment",
+              "MCP (Model Context Protocol) is enabling AI agents to connect with real tools and services",
+              "AI Engineering building reliable systems around AI is becoming a critical skill set",
+              "The future is Developers + AI + Automation, not AI replacing developers",
+            ],
+          },
+        ],
+      },
+    ],
+    canonicalUrl: "https://www.devanshvariya.com/blog/ai-coding-agents-2026",
+    faq: [
+      {
+        question: "What are AI coding agents?",
+        answer: "AI coding agents are AI-powered development tools that can understand a software project, plan tasks, modify code, run tests and iterate on implementations with varying levels of human supervision.",
+      },
+      {
+        question: "What is agentic software development?",
+        answer: "Agentic software development is an approach where AI agents can perform multiple development tasks, such as planning, coding, testing and debugging, rather than only generating individual code snippets.",
+      },
+      {
+        question: "Will AI coding agents replace software developers?",
+        answer: "AI coding agents can automate parts of software development, but developers are still needed for requirements, architecture, security, testing, code review and engineering decisions.",
+      },
+      {
+        question: "What is MCP in AI development?",
+        answer: "MCP, or [Model Context Protocol](https://modelcontextprotocol.io/), is an open protocol that provides a standardized way for AI applications to connect with external tools, data sources and services.",
+      },
+      {
+        question: "Which AI coding tools are popular in 2026?",
+        answer: "The AI coding ecosystem includes tools such as [OpenAI Codex](https://openai.com/codex/), [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://github.com/features/copilot) and [Cursor](https://www.cursor.com/). The capabilities and adoption of these tools continue to evolve rapidly.",
+      },
+      {
+        question: "What should developers learn about AI coding agents?",
+        answer: "Developers should learn how to work with LLM APIs, coding agents, tool calling, RAG, MCP, AI evaluation, security and agent orchestration while maintaining strong software engineering fundamentals.",
+      },
+    ],
+  },
   {
     slug: "building-production-ready-full-stack-application-nextjs",
     title: "How I Built a Full-Stack SaaS Application with Next.js, Node.js and AI",
@@ -62,7 +528,7 @@ export const blogs: BlogPost[] = [
     readTime: "9 min read",
     category: "Full Stack",
     coverImage: "/images/blog/devansh-portfolio-blogbanner.png",
-    featured: true,
+    featured: false,
     tags: [
       "Next.js",
       "React",

@@ -187,13 +187,11 @@ a, button, input, textarea, select {
 }
 
 .glow-orb-1 {
-  animation: float-slow 8s ease-in-out infinite;
-  will-change: transform;
+  animation: float-slow 14s ease-in-out infinite;
 }
 
 .glow-orb-2 {
-  animation: float-slower 10s ease-in-out infinite;
-  will-change: transform;
+  animation: float-slower 18s ease-in-out infinite;
 }
 
 /* ──────────── SLEEK BORDER BEAM & SOFT AURA ──────────── */
@@ -203,24 +201,12 @@ a, button, input, textarea, select {
 }
 
 .border-beam {
-  animation: border-beam-spin 5s linear infinite;
-  will-change: transform;
+  animation: border-beam-spin 8s linear infinite;
 }
 
-@keyframes aura-pulse {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.04);
-  }
-}
-
+/* Aura is now a static glow — no infinite animation needed */
 .aura-pulse {
-  animation: aura-pulse 4s ease-in-out infinite;
-  will-change: transform, opacity;
+  opacity: 0.6;
 }
 
 /* ──────────── GRADIENT TEXT SHIMMER ──────────── */
@@ -242,7 +228,7 @@ a, button, input, textarea, select {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s ease-in-out infinite;
+  animation: shimmer 6s ease-in-out infinite;
 }
 
 /* ──────────── SECTION DIVIDER ──────────── */

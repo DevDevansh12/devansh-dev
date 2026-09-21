@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Explore web development projects by Devansh Variya, including full stack applications, business solutions, websites and modern web development projects.",
   alternates: {
-    canonical: "https://devanshvariya.com/projects",
+    canonical: "https://www.devanshvariya.com/projects",
   },
   openGraph: {
     type: "website",

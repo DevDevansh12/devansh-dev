@@ -74,7 +74,7 @@ export async function generateMetadata({
     schemaDescription: project.shortDescription,
   };
 
-  const canonicalUrl = `https://devanshvariya.com/projects/${slug}`;
+  const canonicalUrl = `https://www.devanshvariya.com/projects/${slug}`;
   const imageUrl = project.image.startsWith("http")
     ? project.image
     : `https://devanshvariya.com${project.image}`;
