@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/sections/Navbar";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 const Footer = dynamic(() => import("@/components/sections/Footer"));
 import "./globals.css";
@@ -96,6 +97,21 @@ export default function RootLayout({
         className="relative min-h-full flex flex-col bg-background text-foreground transition-colors duration-300"
         suppressHydrationWarning
       >
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-VF2EF5ZBGV"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-VF2EF5ZBGV');
+          `}
+        </Script>
+
         {/* Ambient background grid */}
         <div className="pointer-events-none fixed inset-0 z-0 bg-grid-pattern opacity-60" />
 
